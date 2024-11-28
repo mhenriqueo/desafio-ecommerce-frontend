@@ -2,7 +2,7 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./desafio-ecommerce-frontend
+      context: ../desafio-ecommerce-frontend
       dockerfile: Dockerfile
     container_name: desafio-ecommerce-frontend  
     ports:
@@ -14,7 +14,7 @@ services:
 
   backend:
     build:
-      context: ./desafio-ecommerce-backend
+      context: ../desafio-ecommerce-backend
       dockerfile: Dockerfile
     container_name: desafio-ecommerce-backend
     ports:

@@ -71,9 +71,7 @@ function App() {
   };
 
   const handleDeleteCategory = (categoryId) => {
-    deleteCategory(categoryId).then(() => {
-      setCategories(categories.filter(category => category.id !== categoryId));
-    });
+    setCategories(categories.filter(category => category.id !== categoryId));
   };
 
   const handleSearchProduct = () => {

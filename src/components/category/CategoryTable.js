@@ -15,6 +15,8 @@ function CategoryTable({ categories, onDelete, onEdit }) {
           "Não é possível excluir a categoria, pois ela está vinculada a um ou mais produtos."
         );
         setErrorModalOpen(true);
+      } else if (err.response && err.response.status === 404) {
+
       } else {
         setErrorMessage("Ocorreu um erro ao tentar excluir a categoria.");
         setErrorModalOpen(true);
