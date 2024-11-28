@@ -4,8 +4,8 @@ Este repositório contém a parte do Frontend com React, para o desafio de const
 
 ## Pré-requisitos
 
-- Git
-- Docker e Docker Compose instalados
+- Git instalado
+- Docker instalado
 
 ## Estrutura do Projeto
 
