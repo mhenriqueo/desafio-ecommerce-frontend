@@ -1,6 +1,6 @@
 # Desafio: Frontend de Catálogo de Produtos de um Ecommerce
 
-Este repositório contém a parte do Frontend com React, para o desafio para construção de um sistema de gerenciamento de catálogo de produtos em um aplicativo de ecommerce.
+Este repositório contém a parte do Frontend com React, para o desafio de construção de um sistema de gerenciamento de catálogo de produtos em um aplicativo de ecommerce.
 
 ## Pré-requisitos
 
