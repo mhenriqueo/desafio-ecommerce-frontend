@@ -137,7 +137,6 @@ function App() {
         <h1>Catálogo de Produtos</h1>
       </div>
 
-      {/* Menu de navegação */}
       <div className="nav-container">
         <button
           onClick={() => setCurrentTab('product')}
@@ -153,7 +152,6 @@ function App() {
         </button>
       </div>
 
-      {/* Exibir conteúdo baseado na aba selecionada */}
       {currentTab === 'product' && (
         <div className="product-list-container">
           <div className="product-list-header">

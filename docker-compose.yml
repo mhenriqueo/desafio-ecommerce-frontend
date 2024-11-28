@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./desafio-ecommerce-frontend
+      dockerfile: Dockerfile
+    container_name: desafio-ecommerce-frontend  
+    ports:
+      - "80:80"
+    depends_on:
+      - backend  
+    networks:
+      - catalog-network  
+
+  backend:
+    build:
+      context: ./desafio-ecommerce-backend
+      dockerfile: Dockerfile
+    container_name: desafio-ecommerce-backend
+    ports:
+      - "8083:8083"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ecommerce
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - catalog-network
+
+  postgres:
+    image: postgres:15
+    container_name: desafio-ecommerce-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ecommerce
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    networks:
+      - catalog-network
+
+networks:
+  catalog-network:
+    driver: bridge

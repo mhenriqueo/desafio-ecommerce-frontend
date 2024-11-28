@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import { deleteCategory } from '../../services/categoryService';
 
 function CategoryTable({ categories, onDelete, onEdit }) {
-  const [error, setError] = useState(null);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleDelete = async (categoryId) => {
     try {
       await deleteCategory(categoryId);
       onDelete(categoryId);
-      setError(null);
     } catch (err) {
       if (err.response && err.response.status === 409) {
-        setError('Não é possível excluir a categoria, pois ela está vinculada a um ou mais produtos.');
+        setErrorMessage(
+          "Não é possível excluir a categoria, pois ela está vinculada a um ou mais produtos."
+        );
+        setErrorModalOpen(true);
       } else if (err.response && err.response.status === 404) {
 
       } else {
-        setError('Ocorreu um erro ao tentar excluir a categoria. Tente novamente mais tarde.');
+        setErrorMessage("Ocorreu um erro ao tentar excluir a categoria.");
+        setErrorModalOpen(true);
       }
     }
   };
 
   return (
     <div>
-      {error && <div className="error-message">{error}</div>}
       <table className="category-table">
         <thead>
           <tr>
@@ -59,6 +62,17 @@ function CategoryTable({ categories, onDelete, onEdit }) {
           )}
         </tbody>
       </table>
+
+      {errorModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>{errorMessage}</p>
+            <button className="modal-close-btn" onClick={() => setErrorModalOpen(false)}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
