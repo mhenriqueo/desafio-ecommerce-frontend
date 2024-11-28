@@ -71,9 +71,8 @@ function App() {
   };
 
   const handleDeleteCategory = (categoryId) => {
-    setCategories(categories.filter(category => category.id !== categoryId));
-    deleteCategory(categoryId).catch(error => {
-      alert(error.message);
+    deleteCategory(categoryId).then(() => {
+      setCategories(categories.filter(category => category.id !== categoryId));
     });
   };
 
